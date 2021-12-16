@@ -109,7 +109,9 @@ class Nubia:
         return prediction
 
     def _gpt_score(self, text):
-        tokenize_input = self.tokenizer.tokenize(text)
+        tokenize_input = self.tokenizer.tokenize(text)        
+        if len(tokenize_input) > 1024:
+          tokenize_input = ttokenize_input[:1024]
         tensor_input = torch.tensor([[self.tokenizer. eos_token_id] +
                                      self.tokenizer.convert_tokens_to_ids(
                                          tokenize_input)])
